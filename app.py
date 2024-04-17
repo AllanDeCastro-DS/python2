@@ -1,28 +1,27 @@
 import os
 
 def finalizar_app():
-    os.system('clear')
-    print('finalizando app\n')
+    os.system('cls')
 
 def chamar_nome_do_app():
     print('restaurante expresso\n')
 
-def escolher_opcoes():
-    print('1- cadastrar restaurante')
-    print('2- listar restaurantes')
-    print('3- ativar restaurante')
-    print('4- sair do programa\n')
+
+def voltar_ao_menu_inical():
+    print('Digite uma tecla qualquer para voltar ao menu incial')
+    
+    
 
 def cadastrar_restaurante():
     nome = input('Digite o nome do restaurante: ')
     localizacao = input('Digite a localização do restaurante: ')
 
-    restaurantes.append({'nome': nome, 'localizacao': localizacao})
+    restaurantes.append({'nome': nome, 'localizacao': localizacao, })
 
 def listar_restaurantes():
     for restaurante in restaurantes:
-        print(f'Nome: {restaurante["nome"]}, Localização: {restaurante["localizacao"]}')
-
+        print(f'Nome: {restaurante["nome"]}, Localização: {restaurante["localizacao"]}, Ativo: {restaurante["ativo"]} ', '\n')   
+    main()
 def ativar_restaurante():
     nome = input('Digite o nome do restaurante a ativar: ')
 
@@ -30,14 +29,21 @@ def ativar_restaurante():
         if restaurante['nome'] == nome:
             restaurante['ativo'] = True
             print(f'Restaurante {nome} ativado com sucesso!')
-            break
+            main()
+            
 
-restaurantes = []
+restaurantes = [
+    {'nome': 'coiso', 'localizacao': 'local1', 'ativo': False},
+    {'nome': 'coiso2', 'localizacao': 'local2', 'ativo': False},
+                 ]
 
-while True:
-    finalizar_app()
-    chamar_nome_do_app()
-    escolher_opcoes()
+
+
+def escolher_opcoes():
+    print('1- cadastrar restaurante')
+    print('2- listar restaurantes')
+    print('3- ativar restaurante')
+    print('4- sair do programa\n')
 
     try:
         opcao_digitada = int(input('Escolha uma opção: '))
@@ -51,10 +57,22 @@ while True:
             ativar_restaurante()
         elif opcao_digitada == 4:
             print('Você escolheu sair do programa\n')
-            break
         else:
             print('Opção inválida\n')
 
     except ValueError:
         print('Por favor, digite um número válido\n')
-        
+
+
+
+
+def main():
+  
+    escolher_opcoes();
+
+if __name__ == "__main__":
+    os.system('cls')
+
+    chamar_nome_do_app();
+
+    main();
