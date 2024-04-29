@@ -1,28 +1,52 @@
 import os
 
 def finalizar_app():
-    os.system('cls')
+    os.system('clear')
 
 def chamar_nome_do_app():
-    print('restaurante expresso\n')
+    print('''
+    
+  ____           _                                   _        
+ |  _ \ ___  ___| |_ __ _ _ __ _   _ _ __ __ _ _ __ | |_ ___  
+ | |_) / _ \/ __| __/ _` | '__| | | | '__/ _` | '_ \| __/ _ \ 
+ |  _ <  __/\__ \ || (_| | |  | |_| | | | (_| | | | | ||  __/ 
+ |_|_\_\___||___/\__\__,_|_|   \__,_|_|  \__,_|_| |_|\__\___| 
+ | ____|_  ___ __  _ __ ___  ___ ___  ___                     
+ |  _| \ \/ / '_ \| '__/ _ \/ __/ __|/ _ \                    
+ | |___ >  <| |_) | | |  __/\__ \__ \ (_) |                   
+ |_____/_/\_\ .__/|_|  \___||___/___/\___/                    
+            |_|                                               
+
+            
+            
+            ''')
 
 
 def voltar_ao_menu_inical():
     print('Digite uma tecla qualquer para voltar ao menu incial')
     
-    
+restaurantes = [
+    {'nome': 'coiso', 'categoria': 'opcao1', 'ativo': False},
+    {'nome': 'coiso2', 'categoria': 'opcao2', 'ativo': False},
+                 ]
+
+
 
 def cadastrar_restaurante():
+    finalizar_app()
     nome = input('Digite o nome do restaurante: ')
-    localizacao = input('Digite a localização do restaurante: ')
-
-    restaurantes.append({'nome': nome, 'localizacao': localizacao, })
+    categoria = input('Digite a Categoria do restaurante: ')
+    ativo = False
+    restaurantes.append({'nome': nome, 'categoria': categoria, 'ativo':ativo})
+    main()
 
 def listar_restaurantes():
+    finalizar_app()
     for restaurante in restaurantes:
-        print(f'Nome: {restaurante["nome"]}, Localização: {restaurante["localizacao"]}, Ativo: {restaurante["ativo"]} ', '\n')   
+        print(f'Nome: {restaurante["nome"]}, Categoria: {restaurante["categoria"]}, Ativo: {restaurante["ativo"]} ', '\n')   
     main()
 def ativar_restaurante():
+    finalizar_app()
     nome = input('Digite o nome do restaurante a ativar: ')
 
     for restaurante in restaurantes:
@@ -31,11 +55,6 @@ def ativar_restaurante():
             print(f'Restaurante {nome} ativado com sucesso!')
             main()
             
-
-restaurantes = [
-    {'nome': 'coiso', 'localizacao': 'local1', 'ativo': False},
-    {'nome': 'coiso2', 'localizacao': 'local2', 'ativo': False},
-                 ]
 
 
 
@@ -71,7 +90,7 @@ def main():
     escolher_opcoes();
 
 if __name__ == "__main__":
-    os.system('cls')
+    os.system('clear')
 
     chamar_nome_do_app();
 
