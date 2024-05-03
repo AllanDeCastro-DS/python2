@@ -1,30 +1,27 @@
 import os
 
-def finalizar_app():
-    os.system('clear')
 
 def chamar_nome_do_app():
     print('''
     
-  ____           _                                   _        
- |  _ \ ___  ___| |_ __ _ _ __ _   _ _ __ __ _ _ __ | |_ ___  
- | |_) / _ \/ __| __/ _` | '__| | | | '__/ _` | '_ \| __/ _ \ 
- |  _ <  __/\__ \ || (_| | |  | |_| | | | (_| | | | | ||  __/ 
- |_|_\_\___||___/\__\__,_|_|   \__,_|_|  \__,_|_| |_|\__\___| 
- | ____|_  ___ __  _ __ ___  ___ ___  ___                     
- |  _| \ \/ / '_ \| '__/ _ \/ __/ __|/ _ \                    
- | |___ >  <| |_) | | |  __/\__ \__ \ (_) |                   
- |_____/_/\_\ .__/|_|  \___||___/___/\___/                    
-            |_|                                               
-
+  ____           _                              _        
+ |  _ \ ___  ___| |_ __ _ _   _ _ __ __ _ _ __ | |_ ___  
+ | |_) / _ \/ __| __/ _` | | | | '__/ _` | '_ \| __/ _ \ 
+ |  _ <  __/\__ \ || (_| | |_| | | | (_| | | | | ||  __/ 
+ |_|_\_\___||___/\__\__,_|\__,_|_|  \__,_|_| |_|\__\___| 
+         | ____|_  ___ __  _ __ ___  ___ ___  ___                
+        |  _| \ \/ / '_ \| '__/ _ \/ __/ __|/ _ \               
+        | |___ >  <| |_) | | |  __/\__ \__ \ (_) |              
+        |_____/_/\_\ .__/|_|  \___||___/___/\___/               
+                   |_|                                          
             
             
             ''')
 
+def finalizar_app():
+    os.system('clear')
+    chamar_nome_do_app()
 
-def voltar_ao_menu_inical():
-    print('Digite uma tecla qualquer para voltar ao menu incial')
-    
 restaurantes = [
     {'nome': 'coiso', 'categoria': 'opcao1', 'ativo': False},
     {'nome': 'coiso2', 'categoria': 'opcao2', 'ativo': False},
@@ -34,32 +31,42 @@ restaurantes = [
 
 def cadastrar_restaurante():
     finalizar_app()
-    nome = input('Digite o nome do restaurante: ')
-    categoria = input('Digite a Categoria do restaurante: ')
+    nome = input('Digite o nome do restaurante: \n')
+    categoria = input('\nDigite a Categoria do restaurante: ')
     ativo = False
     restaurantes.append({'nome': nome, 'categoria': categoria, 'ativo':ativo})
     main()
 
+
+
 def listar_restaurantes():
     finalizar_app()
     for restaurante in restaurantes:
-        print(f'Nome: {restaurante["nome"]}, Categoria: {restaurante["categoria"]}, Ativo: {restaurante["ativo"]} ', '\n')   
+        print(f'Nome: {restaurante["nome"]}, Categoria: {restaurante["categoria"]}, Ativo: {restaurante["ativo"]} \n')   
     main()
+
+
+
+
 def ativar_restaurante():
     finalizar_app()
     nome = input('Digite o nome do restaurante a ativar: ')
 
     for restaurante in restaurantes:
         if restaurante['nome'] == nome:
-            restaurante['ativo'] = True
-            print(f'Restaurante {nome} ativado com sucesso!')
-            main()
-            
+            if restaurante['ativo'] == False:
+                restaurante['ativo'] = True
+                print(f'\nO restaurante {nome} foi Ativado')
+                main()
+            else:
+                restaurante['ativo'] = False
+                print(f'\nO restaurante {nome} foi Desativado. \n')
+                main()
 
 
 
 def escolher_opcoes():
-    print('1- cadastrar restaurante')
+    print('\n1- cadastrar restaurante')
     print('2- listar restaurantes')
     print('3- ativar restaurante')
     print('4- sair do programa\n')
@@ -86,12 +93,10 @@ def escolher_opcoes():
 
 
 def main():
-  
+   
     escolher_opcoes();
 
 if __name__ == "__main__":
     os.system('clear')
-
-    chamar_nome_do_app();
-
+    chamar_nome_do_app()
     main();
