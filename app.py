@@ -9,7 +9,8 @@ def chamar_nome_do_app():
  | |_) / _ \/ __| __/ _` | | | | '__/ _` | '_ \| __/ _ \ 
  |  _ <  __/\__ \ || (_| | |_| | | | (_| | | | | ||  __/ 
  |_|_\_\___||___/\__\__,_|\__,_|_|  \__,_|_| |_|\__\___| 
-         | ____|_  ___ __  _ __ ___  ___ ___  ___                
+        _______
+        | ____|_  ___ __  _ __ ___  ___ ___  ___                
         |  _| \ \/ / '_ \| '__/ _ \/ __/ __|/ _ \               
         | |___ >  <| |_) | | |  __/\__ \__ \ (_) |              
         |_____/_/\_\ .__/|_|  \___||___/___/\___/               
@@ -50,17 +51,24 @@ def listar_restaurantes():
 
 def ativar_restaurante():
     finalizar_app()
+    for restaurante in restaurantes:
+        print(f'O restaurante {restaurante["nome"]} está com Status ativo: {restaurante["ativo"]}\n')
     nome = input('Digite o nome do restaurante a ativar: ')
 
     for restaurante in restaurantes:
         if restaurante['nome'] == nome:
             if restaurante['ativo'] == False:
                 restaurante['ativo'] = True
+                finalizar_app()
                 print(f'\nO restaurante {nome} foi Ativado')
                 main()
-            else:
+            elif restaurante['ativo'] == True:
                 restaurante['ativo'] = False
+                finalizar_app()
                 print(f'\nO restaurante {nome} foi Desativado. \n')
+                main()
+            else:
+                print(f'\nO restaurante {nome} não foi encontrado. \n')
                 main()
 
 
@@ -84,10 +92,14 @@ def escolher_opcoes():
         elif opcao_digitada == 4:
             print('Você escolheu sair do programa\n')
         else:
+            finalizar_app()
             print('Opção inválida\n')
+            main()
 
     except ValueError:
+        finalizar_app()
         print('Por favor, digite um número válido\n')
+        main()
 
 
 
