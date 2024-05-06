@@ -19,6 +19,14 @@ def chamar_nome_do_app():
             
             ''')
 
+
+def subtitulo(texto):
+    linha = '='*len(texto)
+    print(linha)
+    print(texto)
+    print(linha)
+    print()
+
 def finalizar_app():
     os.system('clear')
     chamar_nome_do_app()
@@ -31,19 +39,29 @@ restaurantes = [
 
 
 def cadastrar_restaurante():
+
+    
     finalizar_app()
+    subtitulo('Cadastrar Restaurante')
     nome = input('Digite o nome do restaurante: \n')
     categoria = input('\nDigite a Categoria do restaurante: ')
-    ativo = False
-    restaurantes.append({'nome': nome, 'categoria': categoria, 'ativo':ativo})
+    
+    restaurantes.append({'nome': nome, 'categoria': categoria, 'ativo':False})
     main()
 
 
 
 def listar_restaurantes():
     finalizar_app()
+    subtitulo('Lista de Restaurantes')
+    
+
     for restaurante in restaurantes:
-        print(f'Nome: {restaurante["nome"]}, Categoria: {restaurante["categoria"]}, Ativo: {restaurante["ativo"]} \n')   
+        nome = restaurante["nome"]
+        categoria = restaurante["categoria"]
+        ativo = 'Ativado' if restaurante["ativo"] else 'Desativado'
+
+        print(f'Nome: {nome}, Categoria: {categoria}, Ativo: {ativo} \n')
     main()
 
 
@@ -51,6 +69,7 @@ def listar_restaurantes():
 
 def ativar_restaurante():
     finalizar_app()
+    subtitulo('Ativar Restaurante')
     for restaurante in restaurantes:
         print(f'O restaurante {restaurante["nome"]} está com Status ativo: {restaurante["ativo"]}\n')
     nome = input('Digite o nome do restaurante a ativar: ')
@@ -67,6 +86,9 @@ def ativar_restaurante():
                 finalizar_app()
                 print(f'\nO restaurante {nome} foi Desativado. \n')
                 main()
+            elif nome == '':
+                finalizar_app()
+                main()
             else:
                 print(f'\nO restaurante {nome} não foi encontrado. \n')
                 main()
@@ -74,6 +96,7 @@ def ativar_restaurante():
 
 
 def escolher_opcoes():
+    
     print('\n1- cadastrar restaurante')
     print('2- listar restaurantes')
     print('3- ativar restaurante')
